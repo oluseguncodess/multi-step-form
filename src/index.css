@@ -6,6 +6,9 @@
 
   --color-body-background: var(--blue-100);
   --color-primary-blue-300: var(--blue-300);
+  --color-primary-blue-950: var(--blue-950);
+  --color-grayy-500: var(--gray-500);
+  --color-grayy-200: var(--gray-200);
 }
 
 :root {
