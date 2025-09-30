@@ -1,6 +1,12 @@
+import { useForm } from "react-hook-form";
 export default function PersonalInfoForm() {
+  const {handleSubmit} = useForm()
+
+  function handlePersonalFornSubmit() {
+    console.log('i work')
+  }
   return (
-    <form className='w-full flex flex-col gap-4 md:gap-8'>
+    <form className='w-full flex flex-col gap-4 md:gap-7' id="/" onSubmit={handleSubmit(handlePersonalFornSubmit)}>
       <div className='flex flex-col gap-1'>
         <label
           htmlFor='name'

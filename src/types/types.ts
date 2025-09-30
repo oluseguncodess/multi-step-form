@@ -4,3 +4,8 @@ export type sidebarItem = {
   description: string,
   path: string
 }
+
+export type storeContextType = {
+  currentStep: number,
+  setCurrentStep: (step: number) => void
+}
