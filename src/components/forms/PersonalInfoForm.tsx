@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
+import { useStoreContext } from '../../contexts/hooks/useStoreContext';
 
 const formSchema = z.object({
   name: z.string().min(1, 'This field is required'),
@@ -16,6 +17,7 @@ const formSchema = z.object({
 type FormFields = z.infer<typeof formSchema>;
 
 export default function PersonalInfoForm() {
+  const {setCurrentStep} = useStoreContext()
   const navigate = useNavigate()
   const {
     handleSubmit,
@@ -26,6 +28,7 @@ export default function PersonalInfoForm() {
   });
 
   function handleFormSubmit() {
+    setCurrentStep(1)
     navigate('/select-plan')
   }
   return (

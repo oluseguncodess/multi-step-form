@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import RootLayout from './layouts/RootLayout';
 import AddOnForms from './components/forms/AddOnForms';
 import PersonalInfoForm from './components/forms/PersonalInfoForm';
+import StoreContextProvider from './contexts/providers/StoreContextProvider';
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <StoreContextProvider>
+      <RouterProvider router={router} />
+    </StoreContextProvider>
+  );
 }
 
 export default App;

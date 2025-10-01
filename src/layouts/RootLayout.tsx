@@ -1,9 +1,31 @@
-import { Outlet} from 'react-router-dom';
+import { Navigate, Outlet, useLocation} from 'react-router-dom';
 import FormHeadings from '../components/forms/FormHeadings';
 import FormNavigation from '../components/navigation/FormNavigation';
 import Sidebar from '../components/sidebar/Sidebar';
+import { useStoreContext } from '../contexts/hooks/useStoreContext';
 
 export default function RootLayout() {
+  const {currentStep} = useStoreContext()
+  const {pathname} = useLocation()
+
+  const stepMap: Record<string, number> = {
+    '/': 0,
+    '/select-plan': 1,
+    '/add-ons': 2,
+    '/summary': 3,
+  };
+
+  const stepToPath: Record<number, string> = Object.entries(stepMap).reduce<Record<number, string>>((acc, [path, step]) => {
+    acc[step] = path;
+    return acc
+  }, {})
+
+  const requiredStep = stepMap[pathname] ?? 0;
+
+  if(currentStep < requiredStep) {
+    return <Navigate to={stepToPath[currentStep]} replace/>
+  }
+
   return (
     <div className='w-full h-screen bg-body-background md:flex md:justify-center md:items-center overscroll-none relative'>
       <div className='md:w-[950px] bg-white md:h-[600px] md:p-4 md:rounded-[5p] md:flex md:justify-between relative'>
