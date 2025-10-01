@@ -17,3 +17,9 @@ export type storeContextType = {
   currentStep: number,
   setCurrentStep: (step: number) => void
 }
+
+export type Plan = {
+  plan: 'Arcane' | 'Advanced' | 'Pro',
+  price: number,
+  selected: boolean
+}

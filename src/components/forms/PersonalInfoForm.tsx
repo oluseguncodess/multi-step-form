@@ -41,7 +41,7 @@ export default function PersonalInfoForm() {
   }
   return (
     <form
-      className='w-full flex flex-col gap-4 md:gap-7'
+      className='w-full md:max-w-[450px] flex flex-col gap-4 md:gap-7'
       id='/'
       onSubmit={handleSubmit(handleFormSubmit)}
       noValidate

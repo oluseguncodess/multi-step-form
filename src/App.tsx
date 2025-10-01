@@ -3,6 +3,7 @@ import RootLayout from './layouts/RootLayout';
 import AddOnForms from './components/forms/AddOnForms';
 import PersonalInfoForm from './components/forms/PersonalInfoForm';
 import StoreContextProvider from './contexts/providers/StoreContextProvider';
+import SelectPlanForm from './components/forms/SelectPlanForm';
 
 const router = createBrowserRouter([
   {
@@ -10,7 +11,8 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <PersonalInfoForm /> },
-      { path: 'select-plan', element: <AddOnForms /> },
+      { path: 'select-plan', element: <SelectPlanForm /> },
+      { path: 'add-ons', element: <AddOnForms /> },
     ],
   },
 ]);

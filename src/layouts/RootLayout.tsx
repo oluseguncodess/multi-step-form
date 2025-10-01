@@ -31,7 +31,7 @@ export default function RootLayout() {
       <div className='md:w-[950px] bg-white md:h-[600px] md:p-4 md:rounded-[5p] md:flex md:justify-between relative'>
         <Sidebar />
         <div className='bg-white w-[95%] absolute z-10 top-25 left-1/2 transform -translate-x-1/2 md:static md:max-w-[550px] rounded-[10px] md:-translate-x-0 pt-7 px-6 pb-8 md:pt-10'>
-          <div className='w-full md:max-w-[450px] flex flex-col gap-5 md:gap-9'>
+          <div className='w-full flex flex-col gap-5 md:gap-9'>
             <FormHeadings />
             <Outlet />
           </div>
