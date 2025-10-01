@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -6,30 +7,37 @@ import { useStoreContext } from '../../contexts/hooks/useStoreContext';
 
 const formSchema = z.object({
   name: z.string().min(1, 'This field is required'),
-  email: z.string().email('Invalid email address'),
+  email: z
+    .string()
+    .min(1, 'This field is required')
+    .email(),
   phone: z
     .string()
     .min(1, 'This field is required')
-    // eslint-disable-next-line no-useless-escape
-    .regex(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/, 'Invalid phone number'),
+    .regex(
+      /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+      'Invalid phone number'
+    ),
 });
 
 type FormFields = z.infer<typeof formSchema>;
 
 export default function PersonalInfoForm() {
-  const {setCurrentStep} = useStoreContext()
-  const navigate = useNavigate()
+  const { setCurrentStep, personalInfo, setPersonalInfo } = useStoreContext();
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm<FormFields>({
     resolver: zodResolver(formSchema),
+    defaultValues: personalInfo,
   });
 
-  function handleFormSubmit() {
-    setCurrentStep(1)
-    navigate('/select-plan')
+  function handleFormSubmit(data: FormFields) {
+    setPersonalInfo(data);
+    setCurrentStep(1);
+    navigate('/select-plan');
   }
   return (
     <form
@@ -55,7 +63,9 @@ export default function PersonalInfoForm() {
           type='text'
           name='name'
           placeholder='e.g. Stephen King'
-          className='border-1 border-grayy-200 px-4 py-2 md:py-3 rounded-[5px] md:rounded-[10px] focus:outline-none placeholder:text-sm placeholder:font-[400] placeholder:text-grayy-500'
+          className={`border-1 text-sm md:text-base px-4 py-2 md:py-3 rounded-[5px] md:rounded-[10px] focus:outline-none placeholder:text-sm placeholder:font-[400] placeholder:text-grayy-500 ${
+            errors.name ? 'border-red-500' : 'border-grayy-200'
+          }`}
         />
       </div>
       <div className='flex flex-col gap-1'>
@@ -77,7 +87,9 @@ export default function PersonalInfoForm() {
           type='email'
           name='email'
           placeholder='e.g. stephenking@lorem.com'
-          className='border-1 border-grayy-200 px-4 py-2 md:py-3 rounded-[5px] md:rounded-[10px] focus:outline-none placeholder:text-sm placeholder:font-[400] placeholder:text-grayy-500'
+          className={`border-1 text-sm md:text-base px-4 py-2 md:py-3 rounded-[5px] md:rounded-[10px] focus:outline-none placeholder:text-sm placeholder:font-[400] placeholder:text-grayy-500 ${
+            errors.email ? 'border-red-500' : 'border-grayy-200'
+          }`}
         />
       </div>
       <div className='flex flex-col gap-1'>
@@ -99,7 +111,9 @@ export default function PersonalInfoForm() {
           type='tel'
           name='phone'
           placeholder='e.g. +1 234 567 890'
-          className='border-1 border-grayy-200 px-4 py-2 md:py-3 rounded-[5px] md:rounded-[10px] focus:outline-none placeholder:text-sm placeholder:font-[400] placeholder:text-grayy-500'
+          className={`border-1 text-sm md:text-base px-4 py-2 md:py-3 rounded-[5px] md:rounded-[10px] focus:outline-none placeholder:text-sm placeholder:font-[400] placeholder:text-grayy-500 ${
+            errors.phone ? 'border-red-500' : 'border-grayy-200'
+          }`}
         />
       </div>
     </form>
