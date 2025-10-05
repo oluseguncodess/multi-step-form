@@ -13,7 +13,6 @@ export const DATA = [
           monthly: 9,
           yearly: 90
         },
-        selected: false
       },
       {
         id: 2,
@@ -23,7 +22,6 @@ export const DATA = [
           monthly: 12,
           yearly: 120
         },
-        selected: false
       },
       {
         id: 3,
@@ -33,7 +31,6 @@ export const DATA = [
           monthly: 15,
           yearly: 150
         },
-        selected: false
       },
 
     ]

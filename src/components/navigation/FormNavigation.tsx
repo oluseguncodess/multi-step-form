@@ -1,15 +1,16 @@
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function FormNavigation() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const classes = pathname === '/' ? 'justify-end' : 'justify-between';
 
   return (
     <div className={`w-full flex ${classes} items-center text-[0.9rem]`}>
       {pathname !== '/' && (
-        <Link to='..'>
-          <button className='text-gray-500'>Go back</button>
-        </Link>
+        <button className='text-gray-500' onClick={() => navigate(-1)}>
+          Go back
+        </button>
       )}
 
       <button
