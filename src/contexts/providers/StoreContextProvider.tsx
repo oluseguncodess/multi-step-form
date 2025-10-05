@@ -1,25 +1,33 @@
 import { useState, type PropsWithChildren } from 'react';
 import { StoreContext } from '../store/store';
-import { type PersonalInfo } from '../../types/types';
+import { type Summary, type PersonalInfo, type FormFields } from '../../types/types';
 
 export default function StoreContextProvider({ children }: PropsWithChildren) {
   const [currentStep, setCurrentStep] = useState(0);
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo>(
     {} as PersonalInfo
   );
-
-  // () => {
-  //   const savedStep = localStorage.getItem('formCurrentStep');
-  //   return savedStep ? parseInt(savedStep, 10) : 0;
-  // }
-
-  // useEffect(() => {
-  //   localStorage.setItem('formCurrentStep', currentStep.toString());
-  // }, [currentStep]);
-
+  const [selectedPlan, setSelectedPlan] = useState({} as FormFields)
+  const [toggleSubscription, setToggleSubscription] = useState<
+    'monthly' | 'yearly'
+  >('monthly');
+  const [summary, setSummary] = useState<Summary[]>([]);
+  console.log(selectedPlan)
+ 
   return (
     <StoreContext.Provider
-      value={{ currentStep, setCurrentStep, personalInfo, setPersonalInfo }}
+      value={{
+        currentStep,
+        setCurrentStep,
+        personalInfo,
+        setPersonalInfo,
+        toggleSubscription,
+        setToggleSubscription,
+        summary,
+        setSummary,
+        selectedPlan,
+        setSelectedPlan
+      }}
     >
       {children}
     </StoreContext.Provider>
