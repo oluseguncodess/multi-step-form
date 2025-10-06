@@ -12,7 +12,6 @@ type FormFields = {
 export default function SelectPlanForm() {
   const { toggleSubscription, selectedPlan, setSelectedPlan, setCurrentStep } =
     useStoreContext();
-  console.log(selectedPlan);
   const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm<FormFields>({

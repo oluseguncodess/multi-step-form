@@ -3,13 +3,15 @@ import { useStoreContext } from '../../contexts/hooks/useStoreContext';
 import { DATA } from '../../lib/data';
 import AddOn from './AddOn';
 import type { AddOnForm, AddOnFormData } from '../../types/types';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddOnForms() {
-  const {selectedAddOns} = useStoreContext()
+  const navigate = useNavigate()
+  const {selectedAddOns, setSummary, selectedPlan} = useStoreContext()
   const { register, handleSubmit } = useForm<AddOnFormData>({
     defaultValues: selectedAddOns,
   });
-  const { toggleSubscription } = useStoreContext();
+  const { toggleSubscription, setCurrentStep } = useStoreContext();
 
   function handleAddonForm(data: AddOnFormData) {
     const selectedAddons = Object.entries(data)
@@ -33,7 +35,9 @@ export default function AddOnForms() {
       })
       .filter(Boolean) as AddOnForm[];
 
-    console.log(addOnDetails);
+     setSummary([selectedPlan, ...addOnDetails])
+     setCurrentStep(3)
+     navigate('/summary')
   }
   return (
     <form

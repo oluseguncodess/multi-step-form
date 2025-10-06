@@ -15,13 +15,7 @@ export type SelectedPlan = {
   price: number,
   subscription: 'monthly' | 'yearly'
 }
-
-export type Summary = {
-  id:number
-  title: string
-  price: number
-}
-
+  
 export type FormFields = {
   id?: number,
   plan: string;
@@ -31,8 +25,10 @@ export type FormFields = {
 export type AddOnForm ={
   id: number,
   addon: string
-  price?: number
+  price: number
 }
+
+export type Summary = FormFields | AddOnForm
 
 export type AddOnFormData = {
   onlineService: boolean;
