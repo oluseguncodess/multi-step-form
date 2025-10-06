@@ -15,17 +15,25 @@ export type SelectedPlan = {
   price: number,
   subscription: 'monthly' | 'yearly'
 }
-
-export type Summary = {
-  id:number
-  title: string
-  price: number
-}
-
+  
 export type FormFields = {
   id?: number,
   plan: string;
   price?: number
+};
+
+export type AddOnForm ={
+  id: number,
+  addon: string
+  price: number
+}
+
+export type Summary = FormFields | AddOnForm
+
+export type AddOnFormData = {
+  onlineService: boolean;
+  largerStorage: boolean;
+  customizableProfile: boolean;
 };
 
 export type storeContextType = {
@@ -39,5 +47,7 @@ export type storeContextType = {
   setSummary: (summary: Summary[]) => void
   selectedPlan: FormFields
   setSelectedPlan: (plan: FormFields) => void
+  selectedAddOns: AddOnFormData
+  setSelectedAddOns: (addons: AddOnFormData) => void
 }
 

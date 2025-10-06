@@ -1,19 +1,25 @@
 import { useState, type PropsWithChildren } from 'react';
 import { StoreContext } from '../store/store';
-import { type Summary, type PersonalInfo, type FormFields } from '../../types/types';
+import {
+  type Summary,
+  type PersonalInfo,
+  type FormFields,
+  type AddOnFormData,
+} from '../../types/types';
 
 export default function StoreContextProvider({ children }: PropsWithChildren) {
   const [currentStep, setCurrentStep] = useState(0);
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo>(
     {} as PersonalInfo
   );
-  const [selectedPlan, setSelectedPlan] = useState({} as FormFields)
+  const [selectedPlan, setSelectedPlan] = useState({} as FormFields);
+  const [selectedAddOns, setSelectedAddOns] = useState({} as AddOnFormData);
   const [toggleSubscription, setToggleSubscription] = useState<
     'monthly' | 'yearly'
   >('monthly');
   const [summary, setSummary] = useState<Summary[]>([]);
-  console.log(selectedPlan)
- 
+  console.log(summary)
+
   return (
     <StoreContext.Provider
       value={{
@@ -26,7 +32,9 @@ export default function StoreContextProvider({ children }: PropsWithChildren) {
         summary,
         setSummary,
         selectedPlan,
-        setSelectedPlan
+        setSelectedPlan,
+        selectedAddOns,
+        setSelectedAddOns,
       }}
     >
       {children}
