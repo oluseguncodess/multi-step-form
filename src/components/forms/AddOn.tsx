@@ -1,11 +1,14 @@
+import type { UseFormRegister } from 'react-hook-form';
+import type { AddOnFormData } from '../../types/types';
+import { useStoreContext } from '../../contexts/hooks/useStoreContext';
+
 type addOnProps = {
-  key: number;
-  name: string;
+  name: keyof AddOnFormData;
   title: string;
   description: string;
   price: number;
   duration: string;
-  register: any;
+  register: UseFormRegister<AddOnFormData>;
 };
 
 export default function AddOn({
@@ -16,9 +19,18 @@ export default function AddOn({
   register,
   name,
 }: addOnProps) {
+  const { selectedAddOns, setSelectedAddOns } = useStoreContext();
   return (
     <label className='group flex items-center cursor-pointer relative'>
-      <input type='checkbox' className='sr-only peer' {...register(name)} />
+      <input
+        type='checkbox'
+        className='sr-only peer'
+        {...register(name, {
+          onChange: (e) => {
+            setSelectedAddOns({ ...selectedAddOns, [name]: e.target.checked });
+          },
+        })}
+      />
       <div
         className='w-full p-4 md:py-4 md:px-5 border border-gray-300 rounded-[8px] 
                   peer-checked:border-purple-800 peer-checked:bg-purple-50'

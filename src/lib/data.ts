@@ -35,19 +35,19 @@ export const DATA = [
     ],
     addon: [
       {
-        id: 1, name: 'online-service', title: 'Online service', description: 'Access to multiplayer games', price: {
+        id: 4, name: 'onlineService' as const, title: 'Online service', description: 'Access to multiplayer games', price: {
           monthly: 1,
           yearly: 10
         }
       },
       {
-        id: 2, name: 'larger-storage', title: 'Larger storage', description: 'Extra 1TB of cloud save', price: {
+        id: 5, name: 'largerStorage' as const, title: 'Larger storage', description: 'Extra 1TB of cloud save', price: {
           monthly: 2,
           yearly: 20
         }
       },
       {
-        id: 3, name: 'custom-profile', title: 'Customizable Profile', description: 'Custom theme on your profile', price: {
+        id: 6, name: 'customizableProfile' as const, title: 'Customizable Profile', description: 'Custom theme on your profile', price: {
           monthly: 2,
           yearly: 20
         }

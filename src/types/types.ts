@@ -28,6 +28,18 @@ export type FormFields = {
   price?: number
 };
 
+export type AddOnForm ={
+  id: number,
+  addon: string
+  price?: number
+}
+
+export type AddOnFormData = {
+  onlineService: boolean;
+  largerStorage: boolean;
+  customizableProfile: boolean;
+};
+
 export type storeContextType = {
   personalInfo: PersonalInfo
   setPersonalInfo: (info: PersonalInfo) => void
@@ -39,5 +51,7 @@ export type storeContextType = {
   setSummary: (summary: Summary[]) => void
   selectedPlan: FormFields
   setSelectedPlan: (plan: FormFields) => void
+  selectedAddOns: AddOnFormData
+  setSelectedAddOns: (addons: AddOnFormData) => void
 }
 
