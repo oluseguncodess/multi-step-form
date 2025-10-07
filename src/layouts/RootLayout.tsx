@@ -40,9 +40,9 @@ export default function RootLayout() {
           </div>
         </div>
       </div>
-      <div className='absolute bottom-0 w-full p-3 bg-white md:hidden'>
+     {currentStep < 4 && <div className='absolute bottom-0 w-full p-3 bg-white md:hidden'>
         <FormNavigation />
-      </div>
+      </div>}
     </div>
   );
 }
