@@ -1,7 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { useStoreContext } from '../../contexts/hooks/useStoreContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function SummaryForm() {
+  const navigate = useNavigate()
   const { summary, selectedPlan, toggleSubscription } = useStoreContext();
   const totalPrice = summary.reduce((acc, value) => acc + (value?.price ?? 0), 0)
   const {handleSubmit} = useForm()
@@ -26,7 +28,7 @@ export default function SummaryForm() {
                 ? `${selectedPlan.data}(Monthly)`
                 : `${selectedPlan.data}/(Yearly)`}
             </h4>
-            <span className='text-gray-400 underline text-[0.95rem] font-[300]'>
+            <span className='text-gray-400 underline text-[0.95rem] font-[400] hover:cursor-pointer hover:text-purplee-600' onClick={() => navigate(-2)}>
               Change
             </span>
           </div>
