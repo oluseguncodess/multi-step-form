@@ -1,12 +1,16 @@
 import { useEffect } from 'react';
 import thankYou from '../../assets/images/icon-thank-you.svg';
 import { useNavigate } from 'react-router-dom';
+import { useStoreContext } from '../../contexts/hooks/useStoreContext';
 
 export default function ConfirmationPage() {
   const navigate = useNavigate();
+  const { summary } = useStoreContext();
   useEffect(() => {
-    navigate('/', { replace: true });
-  }, [navigate]);
+    if (!summary || summary.length === 0) {
+      navigate('/', { replace: true });
+    }
+  }, [navigate, summary]);
 
   return (
     <div className='flex flex-col items-center gap-4'>
