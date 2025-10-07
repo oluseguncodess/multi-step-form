@@ -1,14 +1,21 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useStoreContext } from '../../contexts/hooks/useStoreContext';
 
 export default function FormNavigation() {
+  const {currentStep, setCurrentStep} = useStoreContext()
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const classes = pathname === '/' ? 'justify-end' : 'justify-between';
 
+  function handleSteps() {
+    setCurrentStep(currentStep - 1)
+    navigate(-1)
+  }
+
   return (
     <div className={`w-full flex ${classes} items-center text-[0.9rem]`}>
       {pathname !== '/' && (
-        <button className='text-gray-500' onClick={() => navigate(-1)}>
+        <button className='text-gray-500' onClick={handleSteps}>
           Go back
         </button>
       )}
