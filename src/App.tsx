@@ -5,6 +5,7 @@ import PersonalInfoForm from './components/forms/PersonalInfoForm';
 import StoreContextProvider from './contexts/providers/StoreContextProvider';
 import SelectPlanForm from './components/forms/SelectPlanForm';
 import SummaryForm from './components/forms/SummaryForm';
+import ConfirmationPage from './components/confirmation/ConfirmationPage';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,8 @@ const router = createBrowserRouter([
       { index: true, element: <PersonalInfoForm /> },
       { path: 'select-plan', element: <SelectPlanForm /> },
       { path: 'add-ons', element: <AddOnForms /> },
-      {path: 'summary', element: <SummaryForm/>}
+      { path: 'summary', element: <SummaryForm /> },
+      { path: '/confirmation', element: <ConfirmationPage /> }
     ],
   },
 ]);
