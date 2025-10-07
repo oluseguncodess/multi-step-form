@@ -1,6 +1,12 @@
+import { useEffect } from 'react';
 import thankYou from '../../assets/images/icon-thank-you.svg';
+import { Navigate } from 'react-router-dom';
 
 export default function ConfirmationPage() {
+  useEffect(() => {
+    <Navigate to='/' replace/>
+  }, [])
+  
   return (
     <div className='flex flex-col items-center gap-4'>
       <div className='w-15 h-15 mb-3 md:w-22 md:h-22'>
