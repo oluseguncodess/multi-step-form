@@ -18,7 +18,6 @@ export default function StoreContextProvider({ children }: PropsWithChildren) {
     'monthly' | 'yearly'
   >('monthly');
   const [summary, setSummary] = useState<Summary[]>([]);
-  console.log(summary)
 
   return (
     <StoreContext.Provider

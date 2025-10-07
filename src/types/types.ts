@@ -11,20 +11,20 @@ export type sidebarItem = {
   path: string
 }
 export type SelectedPlan = {
-  plan: 'Arcane' | 'Advanced' | 'Pro',
+  data: 'Arcane' | 'Advanced' | 'Pro',
   price: number,
   subscription: 'monthly' | 'yearly'
 }
   
 export type FormFields = {
   id?: number,
-  plan: string;
+  data: string;
   price?: number
 };
 
 export type AddOnForm ={
   id: number,
-  addon: string
+  data: string
   price: number
 }
 

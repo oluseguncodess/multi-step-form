@@ -21,12 +21,10 @@ export default function AddOnForms() {
     const addOnDetails: AddOnForm[] = selectedAddons
       .map((name) => {
         const addOnData = DATA[0].addon.find((item) => item.name === name);
-
         if (!addOnData) return null;
-
         return {
           id: addOnData.id,
-          addon: addOnData.title,
+          data: addOnData.title,
           price:
             toggleSubscription === 'monthly'
               ? addOnData.price.monthly

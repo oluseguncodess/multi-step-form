@@ -15,19 +15,19 @@ export default function SelectPlanForm() {
   const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm<FormFields>({
-    defaultValues: { plan: selectedPlan.plan },
+    defaultValues: { plan: selectedPlan.data },
   });
 
   function handleFormSubmit(data: FormFields) {
     // get the existing data selected from database
     const existingData = DATA[0].plan.find(
-      (plan) => plan.title.toLowerCase() === data.plan
+      (plan) => plan.title === data.plan
     );
     const currentPrice =
       toggleSubscription === 'monthly'
         ? existingData?.price.monthly
         : existingData?.price.yearly;
-    setSelectedPlan({id: 1, plan: data.plan, price: currentPrice})
+    setSelectedPlan({id: 1, data: data.plan, price: currentPrice})
     setCurrentStep(2);
     navigate('/add-ons');
   }
@@ -45,12 +45,12 @@ export default function SelectPlanForm() {
               <label className='cursor-pointer'>
                 <input
                   type='radio'
-                  value={plan.title.toLowerCase()}
+                  value={plan.title}
                   {...register('plan', {
                     required: true,
                     onChange: (e) =>
                       setSelectedPlan({
-                        plan: e.target.value,
+                        data: e.target.value,
                       }),
                   })}
                   className='sr-only peer' // hidden but functional
