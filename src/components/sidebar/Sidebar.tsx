@@ -13,7 +13,7 @@ export default function Sidebar() {
 ];
   
   return (
-    <div className='bg-[url("./bg-sidebar-mobile.svg")] h-40 w-full md:w-[270px] bg-cover bg-center bg-no-repeat md:h-full md:rounded-[5px] md:bg-[url("./bg-sidebar-desktop.svg")] flex justify-center md:justify-normal md:pl-9'>
+    <div className='bg-[url("/bg-sidebar-mobile.svg")] h-40 w-full md:w-[270px] bg-cover bg-center bg-no-repeat md:h-full md:rounded-[5px] md:bg-[url("/bg-sidebar-desktop.svg")] flex justify-center md:justify-normal md:pl-9'>
       <div className='w-[190px] flex md:flex-col justify-between md:justify-normal pt-9 md:pt-10 md:gap-9'>
         {navigation.map((sidebaritem) => (
         <SidebarItem
