@@ -2,9 +2,11 @@ import { Navigate, Outlet, useLocation} from 'react-router-dom';
 import FormHeadings from '../components/forms/FormHeadings';
 import FormNavigation from '../components/navigation/FormNavigation';
 import Sidebar from '../components/sidebar/Sidebar';
+import { useStoreContext } from '../contexts/hooks/useStoreContext';
 
 export default function RootLayout() {
   const {pathname} = useLocation()
+  const { personalInfo, selectedPlan, summary } = useStoreContext();
 
   const stepMap: Record<string, number> = {
     '/': 0,
@@ -14,17 +16,26 @@ export default function RootLayout() {
     '/confirmation': 4,
   };
 
-  const stepToPath: Record<number, string> = Object.entries(stepMap).reduce<Record<number, string>>((acc, [path, step]) => {
-    acc[step] = path;
-    return acc
-  }, {})
-
   // Derive currentStep from pathname
   const currentStep = stepMap[pathname] ?? 0;
-  const requiredStep = stepMap[pathname] ?? 0;
 
-  if(currentStep < requiredStep) {
-    return <Navigate to={stepToPath[currentStep]} replace />
+  // Check if user has completed previous steps
+  const hasPersonalInfo = personalInfo && personalInfo.name && personalInfo.email && personalInfo.phone;
+  const hasSelectedPlan = selectedPlan && selectedPlan.data;
+  const hasSummary = summary && summary.length > 0;
+
+  // Redirect logic based on actual form completion
+  if (pathname === '/select-plan' && !hasPersonalInfo) {
+    return <Navigate to="/" replace />
+  }
+  if (pathname === '/add-ons' && (!hasPersonalInfo || !hasSelectedPlan)) {
+    return <Navigate to="/" replace />
+  }
+  if (pathname === '/summary' && (!hasPersonalInfo || !hasSelectedPlan)) {
+    return <Navigate to="/" replace />
+  }
+  if (pathname === '/confirmation' && (!hasPersonalInfo || !hasSelectedPlan || !hasSummary)) {
+    return <Navigate to="/" replace />
   }
 
   return (
