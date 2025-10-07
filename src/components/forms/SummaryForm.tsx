@@ -17,7 +17,10 @@ export default function SummaryForm() {
   );
   const { handleSubmit } = useForm();
 
-  function handleConfirmation() {}
+  function handleConfirmation() {
+    setCurrentStep(currentStep + 1)
+    navigate('/confirmation')
+  }
 
   function handleStep() {
     setCurrentStep(currentStep - 2);
