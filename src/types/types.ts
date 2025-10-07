@@ -39,8 +39,6 @@ export type AddOnFormData = {
 export type storeContextType = {
   personalInfo: PersonalInfo
   setPersonalInfo: (info: PersonalInfo) => void
-  currentStep: number,
-  setCurrentStep: (step: number) => void
   toggleSubscription: 'monthly' | 'yearly'
   setToggleSubscription: (subscription: 'monthly' | 'yearly') => void
   summary: Summary[],

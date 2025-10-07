@@ -8,9 +8,8 @@ export default function SummaryForm() {
     summary,
     selectedPlan,
     toggleSubscription,
-    currentStep,
-    setCurrentStep,
   } = useStoreContext();
+  
   const totalPrice = summary.reduce(
     (acc, value) => acc + (value?.price ?? 0),
     0
@@ -18,12 +17,10 @@ export default function SummaryForm() {
   const { handleSubmit } = useForm();
 
   function handleConfirmation() {
-    setCurrentStep(currentStep + 1)
     navigate('/confirmation')
   }
 
   function handleStep() {
-    setCurrentStep(currentStep - 2);
     navigate(-2);
   }
 

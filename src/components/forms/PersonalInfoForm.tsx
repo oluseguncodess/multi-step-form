@@ -23,7 +23,7 @@ const formSchema = z.object({
 type FormFields = z.infer<typeof formSchema>;
 
 export default function PersonalInfoForm() {
-  const { setCurrentStep, personalInfo, setPersonalInfo } = useStoreContext();
+  const { personalInfo, setPersonalInfo } = useStoreContext();
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -36,7 +36,6 @@ export default function PersonalInfoForm() {
 
   function handleFormSubmit(data: FormFields) {
     setPersonalInfo(data);
-    setCurrentStep(1);
     navigate('/select-plan');
   }
   return (

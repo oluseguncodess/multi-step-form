@@ -8,7 +8,6 @@ import {
 } from '../../types/types';
 
 export default function StoreContextProvider({ children }: PropsWithChildren) {
-  const [currentStep, setCurrentStep] = useState(0);
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo>(
     {} as PersonalInfo
   );
@@ -22,8 +21,6 @@ export default function StoreContextProvider({ children }: PropsWithChildren) {
   return (
     <StoreContext.Provider
       value={{
-        currentStep,
-        setCurrentStep,
         personalInfo,
         setPersonalInfo,
         toggleSubscription,

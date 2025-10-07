@@ -2,10 +2,8 @@ import { Navigate, Outlet, useLocation} from 'react-router-dom';
 import FormHeadings from '../components/forms/FormHeadings';
 import FormNavigation from '../components/navigation/FormNavigation';
 import Sidebar from '../components/sidebar/Sidebar';
-import { useStoreContext } from '../contexts/hooks/useStoreContext';
 
 export default function RootLayout() {
-  const {currentStep} = useStoreContext()
   const {pathname} = useLocation()
 
   const stepMap: Record<string, number> = {
@@ -21,10 +19,12 @@ export default function RootLayout() {
     return acc
   }, {})
 
+  // Derive currentStep from pathname
+  const currentStep = stepMap[pathname] ?? 0;
   const requiredStep = stepMap[pathname] ?? 0;
 
   if(currentStep < requiredStep) {
-    return <Navigate to={stepToPath[currentStep]} replace/>
+    return <Navigate to={stepToPath[currentStep]} replace />
   }
 
   return (

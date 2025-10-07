@@ -10,7 +10,7 @@ type FormFields = {
 };
 
 export default function SelectPlanForm() {
-  const { toggleSubscription, selectedPlan, setSelectedPlan, setCurrentStep } =
+  const { toggleSubscription, selectedPlan, setSelectedPlan } =
     useStoreContext();
   const navigate = useNavigate();
 
@@ -28,7 +28,6 @@ export default function SelectPlanForm() {
         ? existingData?.price.monthly
         : existingData?.price.yearly;
     setSelectedPlan({id: 1, data: data.plan, price: currentPrice})
-    setCurrentStep(2);
     navigate('/add-ons');
   }
 
